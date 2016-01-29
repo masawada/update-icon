@@ -5,6 +5,13 @@
   <title>test</title>
 </head>
 <body>
+  <% if flash[:error] %>
+    <p class="error"><%= flash[:error] %></p>
+  <% end %>
+  <% if flash[:info] %>
+    <p class="info"><%= flash[:info] %></p>
+  <% end %>
+
   <% if signed_in? %>
     Logged in as <%= @user[:screen_name] %><br>
     <img src="<%= @user[:icon_path] %>" alt=""><br>

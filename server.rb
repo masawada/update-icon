@@ -40,7 +40,7 @@ module UpdateName
         return false unless auth['uid'] && auth['provider']
 
         if BANNED_USERS.include? auth['info']['nickname']
-          # TODO: flash forbidden user
+          flash[:error] = "許可されていないユーザです"
           redirect '/'
         end
 
@@ -57,7 +57,7 @@ module UpdateName
 
       def require_signin
         unless signed_in?
-          # TODO flash login required
+          flash[:error] = "ログインが必要です"
           redirect '/'
         end
       end
@@ -110,26 +110,28 @@ module UpdateName
     get '/auth/twitter/callback' do
       if authenticate(request.env['omniauth.auth'])
         # TODO: flash sign in successfully
+        flash[:info] = "ログインしました"
       else
-        # TODO: flash sign in failed
+        flash[:error] = "ログインに失敗しました"
       end
 
       redirect '/'
     end
 
     get '/auth/failure' do
-      # TODO: flash sign in failed
+      flash[:error] = "ログインに失敗しました"
       redirect '/'
     end
 
     get '/logout' do
       sign_out
-      # TODO: flash logged out
+      flash[:info] = "ログアウトしました"
       redirect '/'
     end
 
     post '/upload' do
       @client.update_profile_image(params[:file][:tempfile])
+      flash.now[:info] = "アイコンを変更しました"
       erb :index
     end
   end
