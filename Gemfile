@@ -8,4 +8,5 @@ gem 'omniauth-twitter'
 
 group :development do
   gem 'dotenv'
+  gem 'foreman'
 end
