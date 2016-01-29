@@ -135,8 +135,12 @@ module UpdateName
     end
 
     post '/upload' do
-      @client.update_profile_image(params[:file][:tempfile])
-      flash[:info] = "アイコンを変更しました"
+      begin
+        @client.update_profile_image(params[:file][:tempfile])
+        flash[:info] = "アイコンを変更しました"
+      rescue
+        flash[:error] = "アイコンの変更に失敗しました"
+      end
 
       redirect '/'
     end
