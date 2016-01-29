@@ -9,6 +9,12 @@
   text-align: center;
 }
 
+.twitter-widget {
+  max-width: 540px;
+  margin: 20px auto;
+  padding: 0 10px;
+}
+
 /* form */
 .update-form {
   text-align: center;
