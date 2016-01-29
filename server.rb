@@ -15,6 +15,14 @@ module UpdateName
       set :sessions, true
     end
 
+    use OmniAuth::Builder do
+      provider :twitter, LOGIN_CONSUMER_KEY, LOGIN_CONSUMER_SECRET
+    end
+
+    OmniAuth.config.on_failure = Proc.new { |env|
+      OmniAuth::FailureEndpoint.new(env).redirect_to_failure
+    }
+
     get '/' do
       'hello'
     end
