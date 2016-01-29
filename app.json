@@ -1,0 +1,36 @@
+{
+  "name": "update-icon",
+  "description": "Update twitter icon",
+  "keywords": [
+    "Twitter"
+  ],
+  "website": "https://github.com/masawada/update-icon",
+  "repository": "https://github.com/masawada/update-icon",
+  "success_url": "/",
+  "env": {
+    "CONSUMER_KEY": {
+      "description": ""
+    },
+    "CONSUMER_SECRET": {
+      "description": ""
+    },
+    "ACCESS_TOKEN": {
+      "description": ""
+    },
+    "ACCESS_TOKEN_SECRET": {
+      "description": ""
+    },
+    "SCREEN_NAME": {
+      "description": ""
+    },
+    "BANNED_USERS": {
+      "description": ""
+    },
+    "LOGIN_CONSUMER_KEY": {
+      "description": ""
+    },
+    "LOGIN_CONSUMER_SECRET": {
+      "description": ""
+    }
+  }
+}
