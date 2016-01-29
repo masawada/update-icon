@@ -12,5 +12,12 @@
   <% else %>
     <a href="/auth/twitter">Sign in with Twitter</a>
   <% end %>
+
+  <% if signed_in? %>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+      <input type="file" name="file">
+      <input type="submit">
+    </form>
+  <% end %>
 </body>
 </html>

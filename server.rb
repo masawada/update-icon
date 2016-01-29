@@ -20,6 +20,13 @@ BANNED_USERS = [
   ''
 ]
 
+CLIENT = Twitter::REST::Client.new do |config|
+  config.consumer_key        = CONSUMER_KEY
+  config.consumer_secret     = CONSUMER_SECRET
+  config.access_token        = ACCESS_TOKEN
+  config.access_token_secret = ACCESS_TOKEN_SECRET
+end
+
 module UpdateName
   class Server < Sinatra::Base
     configure do
@@ -84,6 +91,12 @@ module UpdateName
     before do
       if signed_in?
         @user = current_user
+        @client = Twitter::REST::Client.new do |config|
+          config.consumer_key        = CONSUMER_KEY
+          config.consumer_secret     = CONSUMER_SECRET
+          config.access_token        = ACCESS_TOKEN
+          config.access_token_secret = ACCESS_TOKEN_SECRET
+        end
       end
     end
 
@@ -111,6 +124,11 @@ module UpdateName
       sign_out
       # TODO: flash logged out
       redirect '/'
+    end
+
+    post '/upload' do
+      @client.update_profile_image(params[:file][:tempfile])
+      erb :index
     end
   end
 end
