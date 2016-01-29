@@ -18,7 +18,7 @@ LOGIN_CONSUMER_KEY    = ENV['LOGIN_CONSUMER_KEY'] || CONSUMER_KEY
 LOGIN_CONSUMER_SECRET = ENV['LOGIN_CONSUMER_SECRET'] || CONSUMER_SECRET
 
 SCREEN_NAME  = ENV['SCREEN_NAME']
-BANNED_USERS = ENV['BANNED_USERS'].split(',')
+BANNED_USERS = ENV['BANNED_USERS']
 
 CLIENT = Twitter::REST::Client.new do |config|
   config.consumer_key        = CONSUMER_KEY
@@ -38,7 +38,7 @@ module UpdateName
       def authenticate(auth)
         return false unless auth['uid'] && auth['provider']
 
-        if BANNED_USERS.include? auth['info']['nickname']
+        if BANNED_USERS.split(',').include? auth['info']['nickname']
           flash[:error] = "許可されていないユーザです"
           redirect '/'
         end
