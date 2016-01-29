@@ -104,7 +104,11 @@ module UpdateName
     end
 
     get '/' do
-      erb :index
+      if signed_in?
+        erb :index
+      else
+        erb :signin
+      end
     end
 
     # auth
@@ -132,8 +136,9 @@ module UpdateName
 
     post '/upload' do
       @client.update_profile_image(params[:file][:tempfile])
-      flash.now[:info] = "アイコンを変更しました"
-      erb :index
+      flash[:info] = "アイコンを変更しました"
+
+      redirect '/'
     end
   end
 end

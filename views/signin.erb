@@ -1,0 +1,16 @@
+<% if flash[:info] %>
+  <div class="alert alert-info" role="alert"><%= flash[:info] %></div>
+<% end %>
+<% if flash[:error] %>
+  <div class="alert alert-danger" role="alert"><%= flash[:error] %></div>
+<% end %>
+
+<div class="jumbotron">
+  <h2>アイコンをより良く</h2>
+  <p>あなたの手で<a href="https://twitter.com/<%= @target_screen_name %>">@<%= @target_screen_name %></a>のアイコンをオシャレに変えましょう。</p>
+  <a href="/auth/twitter" class="btn btn-lg btn-info"><i class="fa fa-twitter"></i> Sign in with Twitter</a>
+</div>
+<div class="twitter-widget">
+  <a class="twitter-timeline" href="https://twitter.com/dentoolt" data-widget-id="693017962865938432">Tweets by @dentoolt</a>
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</div>

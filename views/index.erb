@@ -1,67 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="app.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-  <script src="app.js"></script>
-  <title>Icon Updater</title>
-</head>
-<body>
-<div class="container">
-<% if signed_in? %>
-  <!-- nav -->
-  <nav class="navbar navbar-default">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-5" aria-expanded="false">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="/">@<%= @target_screen_name %> Icon Updater</a>
-      </div>
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-5">
-        <p class="navbar-text navbar-right">@<%= @user[:screen_name] %>としてログイン中 (<a href="/logout">ログアウト</a>)</p>
-      </div>
+<!-- nav -->
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-5" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">@<%= @target_screen_name %> Icon Updater</a>
     </div>
-  </nav>
-
-  <% if flash[:info] %>
-    <div class="alert alert-info" role="alert"><%= flash[:info] %></div>
-  <% end %>
-  <% if flash[:error] %>
-    <div class="alert alert-danger" role="alert"><%= flash[:error] %></div>
-  <% end %>
-
-  <form action="/upload" method="post" enctype="multipart/form-data" class="update-form">
-    <div class="image-selector">
-      クリックして画像を選択
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-5">
+      <p class="navbar-text navbar-right">@<%= @user[:screen_name] %>としてログイン中 (<a href="/logout">ログアウト</a>)</p>
     </div>
-    <input type="file" name="file" class="file-input">
-    <input value="アイコンを設定する" type="submit" class="btn btn-lg btn-info submit">
-  </form>
-<% else %>
-  <% if flash[:info] %>
-    <div class="alert alert-info" role="alert"><%= flash[:info] %></div>
-  <% end %>
-  <% if flash[:error] %>
-    <div class="alert alert-danger" role="alert"><%= flash[:error] %></div>
-  <% end %>
+  </div>
+</nav>
 
-  <div class="jumbotron">
-    <h2>アイコンをより良く</h2>
-    <p>あなたの手で<a href="https://twitter.com/<%= @target_screen_name %>">@<%= @target_screen_name %></a>のアイコンをオシャレに変えましょう。</p>
-    <a href="/auth/twitter" class="btn btn-lg btn-info"><i class="fa fa-twitter"></i> Sign in with Twitter</a>
-  </div>
-  <div class="twitter-widget">
-    <a class="twitter-timeline" href="https://twitter.com/dentoolt" data-widget-id="693017962865938432">Tweets by @dentoolt</a>
-    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-  </div>
+<% if flash[:info] %>
+  <div class="alert alert-info" role="alert"><%= flash[:info] %></div>
 <% end %>
-</div>
-</body>
-</html>
+<% if flash[:error] %>
+  <div class="alert alert-danger" role="alert"><%= flash[:error] %></div>
+<% end %>
+
+<form action="/upload" method="post" enctype="multipart/form-data" class="update-form">
+  <div class="image-selector">
+    クリックして画像を選択
+  </div>
+  <input type="file" name="file" class="file-input">
+  <input value="アイコンを設定する" type="submit" class="btn btn-lg btn-info submit">
+</form>
