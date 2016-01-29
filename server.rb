@@ -1,4 +1,5 @@
 require 'sinatra/base'
+require 'sinatra/flash'
 require 'omniauth'
 require 'omniauth-twitter'
 require 'twitter'
@@ -30,6 +31,7 @@ end
 module UpdateName
   class Server < Sinatra::Base
     configure do
+      register Sinatra::Flash
       set :sessions, true
     end
 
