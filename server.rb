@@ -17,9 +17,8 @@ ACCESS_TOKEN_SECRET = ENV['ACCESS_TOKEN_SECRET']
 LOGIN_CONSUMER_KEY    = ENV['LOGIN_CONSUMER_KEY'] || CONSUMER_KEY
 LOGIN_CONSUMER_SECRET = ENV['LOGIN_CONSUMER_SECRET'] || CONSUMER_SECRET
 
-BANNED_USERS = [
-  ''
-]
+SCREEN_NAME  = ENV['SCREEN_NAME']
+BANNED_USERS = ENV['BANNED_USERS'].split(',')
 
 CLIENT = Twitter::REST::Client.new do |config|
   config.consumer_key        = CONSUMER_KEY
@@ -91,6 +90,8 @@ module UpdateName
     }
 
     before do
+      @target_screen_name = SCREEN_NAME
+
       if signed_in?
         @user = current_user
         @client = Twitter::REST::Client.new do |config|
