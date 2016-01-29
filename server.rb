@@ -137,7 +137,8 @@ module UpdateName
     post '/upload' do
       begin
         @client.update_profile_image(params[:file][:tempfile])
-        flash[:info] = "アイコンを変更しました"
+        @client.update("@#{@user[:screen_name]} アイコンを変更しました。ご提供ありがとうございます。")
+        flash[:info] = "アイコンを変更しました (<a href=\"https://twitter.com/#{@target_screen_name}\">アイコンを見る</a>)"
       rescue
         flash[:error] = "アイコンの変更に失敗しました"
       end
