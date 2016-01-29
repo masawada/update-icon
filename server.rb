@@ -11,6 +11,10 @@ LOGIN_CONSUMER_SECRET = ENV['LOGIN_CONSUMER_SECRET'] || CONSUMER_SECRET
 
 module UpdateName
   class Server < Sinatra::Base
+    configure do
+      set :sessions, true
+    end
+
     get '/' do
       'hello'
     end
