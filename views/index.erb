@@ -30,6 +30,13 @@
     </div>
   </nav>
 
+  <% if flash[:info] %>
+    <div class="alert alert-info" role="alert"><%= flash[:info] %></div>
+  <% end %>
+  <% if flash[:error] %>
+    <div class="alert alert-danger" role="alert"><%= flash[:error] %></div>
+  <% end %>
+
   <form action="/upload" method="post" enctype="multipart/form-data" class="update-form">
     <div class="image-selector">
       クリックして画像を選択
@@ -38,6 +45,13 @@
     <input value="アイコンを設定する" type="submit" class="btn btn-lg btn-info submit">
   </form>
 <% else %>
+  <% if flash[:info] %>
+    <div class="alert alert-info" role="alert"><%= flash[:info] %></div>
+  <% end %>
+  <% if flash[:error] %>
+    <div class="alert alert-danger" role="alert"><%= flash[:error] %></div>
+  <% end %>
+
   <div class="jumbotron">
     <h2>アイコンをより良く</h2>
     <p>あなたの手で<a href="https://twitter.com/<%= @target_screen_name %>">@<%= @target_screen_name %></a>のアイコンをオシャレに変えましょう。</p>
