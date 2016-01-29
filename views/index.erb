@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>test</title>
+</head>
+<body>
+  <% if signed_in? %>
+    Logged in as <%= @user[:screen_name] %><br>
+    <img src="<%= @user[:icon_path] %>" alt=""><br>
+    <a href="/logout">logout</a>
+  <% else %>
+    <a href="/auth/twitter">Sign in with Twitter</a>
+  <% end %>
+</body>
+</html>
